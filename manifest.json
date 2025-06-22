@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Medical Tool 21JC",
+  "version": "1.0",
+  "description": "Outils d'assistance médicale pour le serveur 21 Jump Click.",
+  "icons": {
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "permissions": ["scripting"],
+  "action": {
+    "default_title": "Medical Form Helper"
+  },
+  "host_permissions": ["https://intra.21jumpclick.fr/medical/files"],
+  "content_scripts": [
+    {
+      "matches": ["https://intra.21jumpclick.fr/medical/files"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["cases.json"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
