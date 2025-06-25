@@ -21,6 +21,17 @@
     "incapacites": [],
     "coma": false
   },
+  "VC": {
+    "type": "Note interne",
+    "codePostal": "8040",
+    "dureeInvalidite": "",
+    "blessures": "VC",
+    "examens": "",
+    "traitements": "",
+    "remarques": "FDS",
+    "incapacites": [],
+    "coma": false
+  },
   "Déshydratation": {
     "type": "Intervention",
     "codePostal": "",
