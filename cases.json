@@ -1,4 +1,16 @@
 {
+  "-- Sélectionner un cas type --": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "",
+    "blessures": "",
+    "examens": "",
+    "traitements": "",
+    "remarques": "",
+    "incapacites": [],
+    "coma": false
+  },
+  
   "VM - Civil": {
     "type": "Note interne",
     "codePostal": "8040",
@@ -10,6 +22,7 @@
     "incapacites": [],
     "coma": false
   },
+  
   "VM - Services publics": {
     "type": "Note interne",
     "codePostal": "8040",
@@ -21,6 +34,7 @@
     "incapacites": [],
     "coma": false
   },
+  
   "VC": {
     "type": "Note interne",
     "codePostal": "8040",
@@ -32,6 +46,7 @@
     "incapacites": [],
     "coma": false
   },
+  
   "Déshydratation": {
     "type": "Intervention",
     "codePostal": "",
@@ -43,6 +58,7 @@
     "incapacites": [1,2],
     "coma": true
   },
+  
   "Hypoglycémie": {
     "type": "Intervention",
     "codePostal": "",
@@ -54,149 +70,163 @@
     "incapacites": [1,2],
     "coma": true
   },
-  "Alcool": {
+  
+  "Conso alcool": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:15:00",
-    "blessures": "Ethylometre 0.8g",
+    "blessures": "Ethylometre [MEUSURE]g",
     "examens": "",
     "traitements": "Dégrisement",
     "remarques": "",
     "incapacites": [],
     "coma": false
   },
+  
   "Coma éthylique": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:30:00",
-    "blessures": "Ethylometre 1.7g",
+    "blessures": "Ethylometre [MEUSURE]g",
     "examens": "",
     "traitements": "Lavage d’estomac // Dégrisement",
     "remarques": "",
     "incapacites": [],
     "coma": true
   },
-  "Drogue douce": {
+  
+  "Conso drogue douce": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:15:00",
-    "blessures": "Consomation stupefiants : Canabis",
+    "blessures": "Consomation stupefiants : [DROGUE]",
     "examens": "Test salivaire : positif// Constantes : Faibles",
     "traitements": "Repos",
     "remarques": "En observation",
     "incapacites": [],
     "coma": false
   },
-  "Drogue dure": {
+  
+  "Conso drogue dure": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:30:00",
-    "blessures": "Consomation stupefiants : Cocaïne",
+    "blessures": "Consomation stupefiants : [DROGUE]",
     "examens": "Test salivaire : positif// Constantes : Elevées",
     "traitements": "Repos",
     "remarques": "En observation",
     "incapacites": [],
     "coma": false
   },
+  
   "OD drogue douce": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:30:00",
-    "blessures": "Overdose : Canabis",
+    "blessures": "Overdose : [DROGUE]",
     "examens": "Test salivaire : positif//Constantes : Faibles",
     "traitements": "Repos",
     "remarques": "En observation",
     "incapacites": [],
     "coma": true
   },
+  
   "OD drogue dure": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:45:00",
-    "blessures": "Overdose : Cocaïne",
+    "blessures": "Overdose : [DROGUE]",
     "examens": "Test salivaire : positif//Constantes : Elevées",
     "traitements": "Repos",
     "remarques": "En observation",
     "incapacites": [],
     "coma": true
   },
+  
   "Noyade": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:45:00",
-    "blessures": "",
+    "blessures": "Noyade",
     "examens": "IRM : Présence d’eau dans les poumons",
     "traitements": "Expectorants // AD + AI + AB + AF",
     "remarques": "",
     "incapacites": [1,2],
     "coma": true
   },
+  
   "Alergie": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "",
-    "blessures": "Allergie : piqûre d’insecte",
+    "blessures": "Allergie : [ALLERGENE]",
     "examens": "Constantes : faibles",
     "traitements": "Antistaminiques",
     "remarques": "",
     "incapacites": [],
     "coma": false
   },
+  
   "Choc anaphylactique": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:45:00",
-    "blessures": "Allergie : morphine",
+    "blessures": "Allergie : [ALLERGENE]",
     "examens": "Constantes : faibles // Echo: RAS",
     "traitements": "Epinéphrine",
     "remarques": "En observation",
     "incapacites": [1,2],
     "coma": false
   },
+  
   "Retrait tatouages": {
     "type": "Note interne",
     "codePostal": "8040",
     "dureeInvalidite": "",
-    "blessures": "Retrait tatouage x2 (Bras G et torse)",
+    "blessures": "Retrait tatouage x[NOMBRE] ([ZONE])",
     "examens": "",
     "traitements": "Crème anesthésiante + retrait tatouages + Pommade cicatrisante + pansement",
-    "remarques": "Facturation 2.500$ // VC dans 24H",
+    "remarques": "Facturation [PRIX]$ // VC dans 24H",
     "incapacites": [],
     "coma": false
   },
+  
   "Entorse":{
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:30:00",
     "blessures": "",
-    "examens": "Radio : RAS // Echo : Entorse",
+    "examens": "Radio : RAS // Echo : Entorse [ZONE]",
     "traitements": "Attelle souple + AD + AI",
     "remarques": "",
     "incapacites": [1,2],
     "coma": false
   },
+  
   "Fracture nette":{
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:30:00",
     "blessures": "",
-    "examens": "Radio : Fracture nette",
+    "examens": "Radio : Fracture nette [OS]",
     "traitements": "Attelle rigide + AD + AI",
     "remarques": "Pret canne",
     "incapacites": [1,2,3],
     "coma": false
   },
+  
   "Fracture déplacé":{
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "01:00:00",
     "blessures": "",
-    "examens": "Radio : Fracture déplacé",
+    "examens": "Radio : Fracture déplacé [OS]",
     "traitements": "Chir AG : Nettoyages fragments + os réaxé // pose plaque et vis (magnésium) // PDSR musculaire // PDSR cutané // Disinfection // AD + AI + AB",
     "remarques": "Pret fauteuil",
     "incapacites": [1,2,3],
     "coma": false
   },
+  
   "Petit hématomes sous dural":{
     "type": "Intervention",
     "codePostal": "",
@@ -208,6 +238,7 @@
     "incapacites": [1,2,4],
     "coma": false
   },
+  
   "Hématomes sous dural":{
     "type": "Intervention",
     "codePostal": "",
@@ -219,17 +250,19 @@
     "incapacites": [1,2,3],
     "coma": false
   },
+  
   "Chute < 15m":{
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "01:00:00",
-    "blessures": "Chute < 15m",
-    "examens": "Radio : RAS // Echo : Entorse",
+    "blessures": "Chute [HAUTEUR]",
+    "examens": "Radio : RAS // Echo : Entorse  [ZONE]",
     "traitements": "Attelle souple + AD + AI",
     "remarques": "",
     "incapacites": [1,2],
     "coma": false
   },
+  
   "Chute > 15m":{
     "type": "Intervention",
     "codePostal": "",
@@ -241,6 +274,7 @@
     "incapacites": [1,2,3,4],
     "coma": true
   },
+  
   "Intoxication fumées": {
     "type": "Intervention",
     "codePostal": "",
@@ -252,80 +286,87 @@
     "incapacites": [1,2],
     "coma": false
   },
+  
   "Brulures 1e degré": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:30:00",
     "blessures": "Brulures",
-    "examens": "Auscultation : Brulures 1er degré // Echo : RAS",
+    "examens": "Auscultation : Brulures 1er degré [ZONE] // Echo : RAS",
     "traitements": "Nettoyage + Biafine + Bandages",
     "remarques": "",
     "incapacites": [],
     "coma": false
   },
+  
   "Brulures 2e degré": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:30:00",
     "blessures": "Brulures",
-    "examens": "Auscultation : Brulures 2e degré // Echo : RAS",
+    "examens": "Auscultation : Brulures 2e degré [ZONE] // Echo : RAS",
     "traitements": "Chir AL : Nettoyage + tulles gras + bandages + AI + AD + AB",
     "remarques": "",
     "incapacites": [1,2],
     "coma": false
   },
+  
   "Brulures 3e degré": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "00:45:00",
     "blessures": "Brulures",
-    "examens": "Auscultation : Brulures 3e degré // Echo : RAS",
+    "examens": "Auscultation : Brulures 3e degré [ZONE] // Echo : RAS",
     "traitements": "Chir AG :  Nettoyage + pose greffon synthétique + bandages + AB + AD + AI",
     "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
   },
+  
   "Explosion": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "06:00:00",
     "blessures": "Explosion",
-    "examens": "Auscultation : Brulures 3e degré // Echo : RAS",
+    "examens": "Auscultation : Brulures 3e degré [ZONE] // Echo : RAS",
     "traitements": "Chir AG :  Nettoyage + pose greffon synthétique + bandages + AB + AD + AI",
     "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
   },
+  
   "Blessure arme blanche": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "01:00:00",
-    "blessures": "Coup de couteau",
-    "examens": "Radio + Echo :  Lacération flanc G",
+    "blessures": "Coup de [ARME] [ZONE]",
+    "examens": "Radio + Echo :  Lacération [ZONE]",
     "traitements": "Chir AL : Nettoyage + cautérisation + PDSR  Musculaire + PDSR Cutané + bandage + AD + AI + AB",
     "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
   },
-  "BPB 9mm": {
+  
+  "BPB NT": {
     "type": "Intervention",
     "codePostal": "",
     "dureeInvalidite": "01:00:00",
-    "blessures": "BPB // 9mm // GPB",
-    "examens": "Radio + Echo : BNT Bras G",
+    "blessures": "BPB [CATEGORIE] [GPB OU PAS]",
+    "examens": "Radio + Echo : BNT [ZONE]",
     "traitements": "Chir AG : retrait balle + cautérisation + PDSR  Musculaire + PDSR Cutané + bandage + AD + AI + AB  + AC",
     "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
   },
-  "BPB Cat 3": {
+  
+  "BPB T": {
     "type": "Intervention",
     "codePostal": "",
-    "dureeInvalidite": "02:00:00",
-    "blessures": "BPB // Cat 3",
-    "examens": "Radio + Echo : BNT abdomen",
-    "traitements": "Chir AG : retrait balle + cautérisation + ablation foie (10%) + PDSR Foie + PDSR Musculaire + PDSR Cutané + bandage + AD + AI + AB  + AC",
-    "remarques": "Pret fauteuil",
+    "dureeInvalidite": "01:00:00",
+    "blessures": "BPB [CATEGORIE] [GPB OU PAS]",
+    "examens": "Radio + Echo : BT [ZONE]",
+    "traitements": "Chir AG : cautérisation + PDSR  Musculaire + PDSR Cutané + bandage + AD + AI + AB + AC",
+    "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
   }
