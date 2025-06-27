@@ -1,0 +1,7 @@
+ChromeWebStore/
+
+*.crx
+*.pem
+*.zip
+
+.env

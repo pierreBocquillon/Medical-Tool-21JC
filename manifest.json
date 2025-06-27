@@ -24,7 +24,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["cases.json"],
+      "resources": ["cases.json","icons/128.png", "icons/48.png"],
       "matches": ["<all_urls>"]
     }
   ]
