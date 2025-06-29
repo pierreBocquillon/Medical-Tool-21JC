@@ -94,7 +94,7 @@
 
   /** Injection : menu déroulant */
   function injectSelect() {
-    const title = [...document.querySelectorAll("h5")].find(el => el.textContent.includes("Nouveau rapport medical"))
+    const title = [...document.querySelectorAll("h5")].find(el => el.textContent.includes("Nouveau rapport medical") || el.textContent.includes("Modifier le rapport médical"))
     if (!title || document.querySelector("#rapport-helper-select")) return
 
     const container = document.createElement("div")
