@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Medical Tool 21JC",
-  "version": "1.1.2",
+  "version": "1.2.1",
   "description": "Outils d'assistance médicale pour le serveur 21 Jump Click.",
   "icons": {
     "48": "icons/48.png",
@@ -24,7 +24,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["cases.json","icons/128.png", "icons/48.png"],
+      "resources": ["data/injuries.json","icons/128.png", "icons/48.png"],
       "matches": ["<all_urls>"]
     }
   ]

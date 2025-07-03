@@ -1,10 +1,10 @@
 (async () => {
-  const casTypes = await fetch(chrome.runtime.getURL("cases.json")).then(res => res.json())
+  const injuries = await fetch(chrome.runtime.getURL("data/injuries.json")).then(res => res.json())
 
   /** Crée uniquement le menu déroulant des cas types */
   function createSelect() {
     const select = document.createElement("select")
-    Object.keys(casTypes).forEach(cas => {
+    Object.keys(injuries).forEach(cas => {
       const opt = document.createElement("option")
       opt.value = cas
       opt.textContent = cas
@@ -24,7 +24,7 @@
   /** Crée le message d’alerte */
   function createAlert() {
     const p = document.createElement("p")
-    p.textContent = "ATTENTION : Ces cas ne sont que des exemples courants et doivent être ajustés."
+    p.textContent = "ATTENTION : Ces cas ne sont que des exemples courants et doivent être ajustés en fonction de la situation."
     p.style.cssText = "color: Coral; font-size: 14px; margin: 0; text-align: center;"
     p.id = "rapport-helper-alert"
     return p
@@ -62,17 +62,21 @@
 
   /** Gère le remplissage du formulaire à partir d’un cas type */
   function handleCaseSelection(key) {
-    const data = casTypes[key]
+    const data = injuries[key]
     if (!data) return
 
     const setValue = (selector, value) => window.setTextFieldValue(selector, value)
+    const setValueIfEmpty = (selector, value) => window.setTextFieldValueIfEmpty(selector, value)
+    const setValueIfMax = (selector, value) => window.setTextFieldValueIfMax(selector, value)
+
     setValue('input[name="type"]', data.type)
-    setValue('input[name="zip"]', data.codePostal)
-    setValue('input[name="disabilityDuration"]', data.dureeInvalidite)
-    setValue('textarea[name="injuriesRemark"]', data.blessures)
-    setValue('textarea[name="examinationsRemark"]', data.examens)
-    setValue('textarea[name="treatmentsRemark"]', data.traitements)
-    setValue('textarea[name="remark"]', data.remarques)
+    setValueIfEmpty('input[name="zip"]', data.codePostal)
+    setValueIfMax('input[name="disabilityDuration"]', data.dureeInvalidite)
+
+    addBlessures(data.blessures)
+    addExamens(data.examens)
+    addTraitements(data.traitements)
+    addRemarques(data.remarques)
 
     const now = new Date()
     setValue('input[name="admission"]', window.formatDateFR(now))
@@ -84,13 +88,212 @@
     ;[1, 2, 3, 4].forEach(num => {
       const label = [...document.querySelectorAll("label")].find(l => l.textContent.includes(`(${num})`))
       const box = label?.querySelector('input[name="disabilities"]')
-      if (box && box.checked !== (data.incapacites || []).includes(num)) box.click()
+      if (box && !box.checked && box.checked !== (data.incapacites || []).includes(num)) box.click()
     })
 
-    const comaLabel = [...document.querySelectorAll("label")].find(l => l.textContent.includes("Coma"))
-    const comaBox = comaLabel?.querySelector('input[name="disability"]')
-    if (comaBox && comaBox.checked !== !!data.coma) comaBox.click()
+    // const comaLabel = [...document.querySelectorAll("label")].find(l => l.textContent.includes("Coma"))
+    // const comaBox = comaLabel?.querySelector('input[name="disability"]')
+    // if (comaBox && comaBox.checked !== !!data.coma) comaBox.click()
+
+    setTimeout(() => {
+      const select = document.querySelector("#rapport-helper-select")
+      if (select) {
+        select.value = Object.keys(injuries)[0] || "-- Sélectionner une blessure --"
+      }
+    }, 300)
   }
+
+  /** Ajoute les blessures au formulaire */
+  function addBlessures(blessures) {
+    let field = document.querySelector('textarea[name="injuriesRemark"]')
+    let parsedValue = field.value.trim().split("+").map(s => s.trim()).filter(s => s)
+
+    let newValue = parsedValue.concat(blessures)
+    newValue = [...new Set(newValue)]
+
+    window.setTextFieldValue('textarea[name="injuriesRemark"]', newValue.join(" + "))
+  }
+
+  /** Ajoute les examens au formulaire */
+  function addExamens(examens) {
+    let field = document.querySelector('textarea[name="examinationsRemark"]')
+    let parsedValue = field.value.trim().split("//").map(s => s.trim()).filter(s => s)
+    
+    parsedValue = parsedValue.map(s => {
+      const parts = s.split(":")
+      if (parts.length > 1) {
+        const key = parts[0].trim()
+        const values = parts.slice(1).join(":").trim().split("+").map(v => v.trim())
+        return { [key]: values }
+      }else{
+        const values = s.split("+").map(v => v.trim())
+        if (values.length >= 1) {
+          return { "Autres": values }
+        }
+      }
+    })
+    
+    parsedValue = parsedValue.reduce((acc, obj) => {
+      for (let key in obj) {
+        if (!acc[key]) {
+          acc[key] = []
+        }
+        acc[key] = acc[key].concat(obj[key])
+      }
+      return acc
+    }, {})
+
+    let newValue = parsedValue
+    for (let key in examens) {
+      if (!newValue[key]) {
+        newValue[key] = []
+      }
+      newValue[key] = newValue[key].concat(examens[key])
+      newValue[key] = [...new Set(newValue[key])]
+      if (newValue[key].length === 0) {
+        delete newValue[key]
+      }
+    }
+    newValue = Object.entries(newValue).map(([key, values]) => {
+      return `${key}: ${values.join(" + ")}`
+    }).join(" // ").replace("RAS + ","").replace("+ RAS","").replace("Autres: ", "")
+
+    window.setTextFieldValue('textarea[name="examinationsRemark"]', newValue)
+  }
+
+  /** Ajoute les traitements au formulaire */
+  function addTraitements(traitements) {
+    let field = document.querySelector('textarea[name="treatmentsRemark"]')
+    let parsedValue = field.value.trim().split("//").map(s => s.trim()).filter(s => s)
+    
+    parsedValue = parsedValue.map(s => {
+      const parts = s.split(":")
+      if (parts.length > 1) {
+        const key = parts[0].trim()
+        const values = parts.slice(1).join(":").trim().split("+").map(v => v.trim())
+        return { [key]: values }
+      }else{
+        const values = s.split("+").map(v => v.trim())
+        if (values.length >= 1) {
+          return { "Autres": values }
+        }
+      }
+    })
+    
+    let counter = 0
+    for(let obj of parsedValue) {
+      if (obj.Autres) {
+        if (counter === 0) {
+          obj.Manipulations = obj.Autres
+          delete obj.Autres
+          counter++
+        }else if (counter === 1) {
+          obj.Medicaments = obj.Autres
+          delete obj.Autres
+          counter++
+        }
+      }
+    }
+
+    let hasChirAG = parsedValue.some(obj => obj["Chir AG"] != undefined && obj["Chir AG"].length > 0)
+    if (hasChirAG) {
+      parsedValue = parsedValue.map(obj => {
+        if (obj["Chir AL"]) {
+          obj["Chir AG"] = obj["Chir AL"]
+          delete obj["Chir AL"]
+        }
+        return obj
+      })
+    }
+    
+    parsedValue = parsedValue.reduce((acc, obj) => {
+      for (let key in obj) {
+        if (!acc[key]) {
+          acc[key] = []
+        }
+        acc[key] = acc[key].concat(obj[key])
+      }
+      return acc
+    }, {})
+
+    let newValue = parsedValue
+    for (let key in traitements) {
+      if (!newValue[key]) {
+        newValue[key] = []
+      }
+      newValue[key] = newValue[key].concat(traitements[key])
+      newValue[key] = [...new Set(newValue[key])]
+      if (newValue[key].length === 0) {
+        delete newValue[key]
+      }
+    }
+    newValue = Object.entries(newValue).map(([key, values]) => {
+      return `${key}: ${values.join(" + ")}`
+    }).join(" // ").replace("Manipulations: ", "").replace("Medicaments: ", "").replace("Autres: ", "")
+
+    window.setTextFieldValue('textarea[name="treatmentsRemark"]', newValue)
+  }
+
+  /** Ajoute les remarques au formulaire */
+  function addRemarques(remarques) {
+    let field = document.querySelector('textarea[name="remark"]')
+    let parsedValue = field.value.trim()
+
+    parsedValue = parsedValue.replace("VISITE MEDICALE // TEST EFFORT [OK] // [APPROUVÉ AU SERVICE]", "[[VMSP]]")
+    parsedValue = parsedValue.replace("VISITE MEDICALE // [APPROUVÉ AU SERVICE]", "[[VMC]]")
+
+    parsedValue = parsedValue.split("//").map(s => s.trim()).filter(s => s)
+
+    parsedValue = parsedValue.map(s => {
+      const parts = s.split(":")
+      if (parts.length > 1) {
+        const key = parts[0].trim()
+        const values = parts.slice(1).join(":").trim().split("+").map(v => v.trim())
+        return { [key]: values }
+      }else{
+        const values = s.split("+").map(v => v.trim())
+        if (values.length >= 1) {
+          return { "Autres": values }
+        }
+      }
+    })
+    
+    parsedValue = parsedValue.reduce((acc, obj) => {
+      for (let key in obj) {
+        if (!acc[key]) {
+          acc[key] = []
+        }
+        acc[key] = acc[key].concat(obj[key])
+      }
+      return acc
+    }, {})
+
+    let newValue = parsedValue
+    for (let key in remarques) {
+      if (!newValue[key]) {
+        newValue[key] = []
+      }
+      remarques[key] = remarques[key].map(v => {
+        return v.replace("VISITE MEDICALE // TEST EFFORT [OK] // [APPROUVÉ AU SERVICE]", "[[VMSP]]")
+          .replace("VISITE MEDICALE // [APPROUVÉ AU SERVICE]", "[[VMC]]")
+          .trim()
+      })
+
+      newValue[key] = newValue[key].concat(remarques[key])
+      newValue[key] = [...new Set(newValue[key])]
+      if (newValue[key].length === 0) {
+        delete newValue[key]
+      }
+    }
+    newValue = Object.entries(newValue).map(([key, values]) => {
+      return `${key}: ${values.join(" + ")}`
+    }).join(" // ").replace("Autres: ", "")
+
+    newValue = newValue.replace("[[VMSP]]", "VISITE MEDICALE // TEST EFFORT [OK] // [APPROUVÉ AU SERVICE]")
+    newValue = newValue.replace("[[VMC]]", "VISITE MEDICALE // [APPROUVÉ AU SERVICE]")
+
+    window.setTextFieldValue('textarea[name="remark"]', newValue)
+  }  
 
   /** Injection : menu déroulant */
   function injectSelect() {
