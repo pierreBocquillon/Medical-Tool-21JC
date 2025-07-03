@@ -7,6 +7,9 @@
     "examens": "",
     "traitements": "",
     "remarques": "",
+    "chir":"",
+    "manipulation":"",
+    "medicaments":"",
     "incapacites": [],
     "coma": false
   },
@@ -18,6 +21,9 @@
     "blessures": "VM",
     "examens": "",
     "traitements": "",
+    "chir":"",
+    "manipulation":"",
+    "medicaments":"",
     "remarques": "VISITE MEDICALE // [APPROUVÉ AU SERVICE]",
     "incapacites": [],
     "coma": false
@@ -30,6 +36,9 @@
     "blessures": "VM",
     "examens": "",
     "traitements": "",
+    "chir":"",
+    "manipulation":"",
+    "medicaments":"",
     "remarques": "VISITE MEDICALE // TEST EFFORT [OK] // [APPROUVÉ AU SERVICE]",
     "incapacites": [],
     "coma": false
@@ -42,6 +51,9 @@
     "blessures": "VC",
     "examens": "",
     "traitements": "",
+    "chir":"",
+    "manipulation":"",
+    "medicaments":"",
     "remarques": "FDS",
     "incapacites": [],
     "coma": false
@@ -54,6 +66,9 @@
     "blessures": "Déshydratation",
     "examens": "Constantes : faibles",
     "traitements": "Poche réhydratante",
+    "chir":"",
+    "manipulation":"Poche réhydratante",
+    "medicaments":"",
     "remarques": "",
     "incapacites": [1,2],
     "coma": true
@@ -66,6 +81,9 @@
     "blessures": "Déshydratation",
     "examens": "Constantes : faibles",
     "traitements": "Poche de glucose",
+    "chir":"",
+    "manipulation":"Poche de glucose",
+    "medicaments":"",
     "remarques": "",
     "incapacites": [1,2],
     "coma": true
@@ -78,6 +96,9 @@
     "blessures": "Ethylometre [MEUSURE]g",
     "examens": "",
     "traitements": "Dégrisement",
+    "chir":"",
+    "manipulation":"Dégrisement",
+    "medicaments":"",
     "remarques": "",
     "incapacites": [],
     "coma": false
@@ -90,6 +111,9 @@
     "blessures": "Ethylometre [MEUSURE]g",
     "examens": "",
     "traitements": "Lavage d’estomac // Dégrisement",
+    "chir":"",
+    "manipulation":"Lavage d’estomac // Dégrisement",
+    "medicaments":"",
     "remarques": "",
     "incapacites": [],
     "coma": true
@@ -102,6 +126,9 @@
     "blessures": "Consomation stupefiants : [DROGUE]",
     "examens": "Test salivaire : positif// Constantes : Faibles",
     "traitements": "Repos",
+    "chir":"",
+    "manipulation":"Repos",
+    "medicaments":"",
     "remarques": "En observation",
     "incapacites": [],
     "coma": false
@@ -114,6 +141,9 @@
     "blessures": "Consomation stupefiants : [DROGUE]",
     "examens": "Test salivaire : positif// Constantes : Elevées",
     "traitements": "Repos",
+    "chir":"",
+    "manipulation":"Repos",
+    "medicaments":"",
     "remarques": "En observation",
     "incapacites": [],
     "coma": false
@@ -126,6 +156,9 @@
     "blessures": "Overdose : [DROGUE]",
     "examens": "Test salivaire : positif//Constantes : Faibles",
     "traitements": "Repos",
+    "chir":"",
+    "manipulation":"Repos",
+    "medicaments":"",
     "remarques": "En observation",
     "incapacites": [],
     "coma": true
@@ -138,6 +171,9 @@
     "blessures": "Overdose : [DROGUE]",
     "examens": "Test salivaire : positif//Constantes : Elevées",
     "traitements": "Repos",
+    "chir":"",
+    "manipulation":"Repos",
+    "medicaments":"",
     "remarques": "En observation",
     "incapacites": [],
     "coma": true
@@ -150,6 +186,9 @@
     "blessures": "Noyade",
     "examens": "IRM : Présence d’eau dans les poumons",
     "traitements": "Expectorants // AD + AI + AB + AF",
+    "chir":"",
+    "manipulation":"Expectorants",
+    "medicaments":"AD + AI + AB + AF",
     "remarques": "",
     "incapacites": [1,2],
     "coma": true
@@ -162,6 +201,9 @@
     "blessures": "Allergie : [ALLERGENE]",
     "examens": "Constantes : faibles",
     "traitements": "Antistaminiques",
+    "chir":"",
+    "manipulation":"Antistaminiques",
+    "medicaments":"",
     "remarques": "",
     "incapacites": [],
     "coma": false
@@ -174,6 +216,9 @@
     "blessures": "Allergie : [ALLERGENE]",
     "examens": "Constantes : faibles // Echo: RAS",
     "traitements": "Epinéphrine",
+    "chir":"",
+    "manipulation":"Epinéphrine",
+    "medicaments":"",
     "remarques": "En observation",
     "incapacites": [1,2],
     "coma": false
@@ -186,6 +231,9 @@
     "blessures": "Retrait tatouage x[NOMBRE] ([ZONE])",
     "examens": "",
     "traitements": "Crème anesthésiante + retrait tatouages + Pommade cicatrisante + pansement",
+    "chir":"",
+    "manipulation":"Crème anesthésiante + retrait tatouages + Pommade cicatrisante + pansement",
+    "medicaments":"",
     "remarques": "Facturation [PRIX]$ // VC dans 24H",
     "incapacites": [],
     "coma": false
@@ -198,6 +246,9 @@
     "blessures": "",
     "examens": "Radio : RAS // Echo : Entorse [ZONE]",
     "traitements": "Attelle souple + AD + AI",
+    "chir":"",
+    "manipulation":"Attelle souple",
+    "medicaments":"AD + AI",
     "remarques": "",
     "incapacites": [1,2],
     "coma": false
@@ -210,6 +261,9 @@
     "blessures": "",
     "examens": "Radio : Fracture nette [OS]",
     "traitements": "Attelle rigide + AD + AI",
+    "chir":"",
+    "manipulation":"Attelle rigide",
+    "medicaments":"AD + AI",
     "remarques": "Pret canne",
     "incapacites": [1,2,3],
     "coma": false
@@ -222,6 +276,9 @@
     "blessures": "",
     "examens": "Radio : Fracture déplacé [OS]",
     "traitements": "Chir AG : Nettoyages fragments + os réaxé // pose plaque et vis (magnésium) // PDSR musculaire // PDSR cutané // Disinfection // AD + AI + AB",
+    "chir":"AG",
+    "manipulation":"Nettoyages fragments + os réaxé + pose plaque et vis (magnésium) + PDSR musculaire + PDSR cutané + Disinfection",
+    "medicaments":"AD + AI + AB",
     "remarques": "Pret fauteuil",
     "incapacites": [1,2,3],
     "coma": false
@@ -234,6 +291,9 @@
     "blessures": "",
     "examens": "IRM : Hématomes sous dural leger",
     "traitements": "Repos + AI + AD",
+    "chir":"",
+    "manipulation":"Repos",
+    "medicaments":"AI + AD",
     "remarques": "",
     "incapacites": [1,2,4],
     "coma": false
@@ -246,6 +306,9 @@
     "blessures": "",
     "examens": "IRM : Hématomes sous dural",
     "traitements": "Chir AG : trépanation + PDS + bandages + AI + AD + AB",
+    "chir":"AG",
+    "manipulation":"trépanation + PDS + bandages",
+    "medicaments":"AI + AD + AB",
     "remarques": "",
     "incapacites": [1,2,3],
     "coma": false
@@ -258,6 +321,9 @@
     "blessures": "Chute [HAUTEUR]",
     "examens": "Radio : RAS // Echo : Entorse  [ZONE]",
     "traitements": "Attelle souple + AD + AI",
+    "chir":"",
+    "manipulation":"Attelle souple",
+    "medicaments":"AD + AI",
     "remarques": "",
     "incapacites": [1,2],
     "coma": false
@@ -270,6 +336,9 @@
     "blessures": "Chute > 15m",
     "examens": "Radio : RAS // IRM : Hématomes sous dural",
     "traitements": "Chir AG : trépanation + PDS + bandages + AI + AD + AB",
+    "chir":"AG",
+    "manipulation":"trépanation + PDS + bandages",
+    "medicaments":"AI + AD + AB",
     "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
@@ -282,6 +351,9 @@
     "blessures": "Intoxication fumées",
     "examens": "Echo : particules dans les poumons + brulures superficielle des bronches",
     "traitements": "Oxygénothérapie + AI + AD + AB",
+    "chir":"",
+    "manipulation":"Oxygénothérapie",
+    "medicaments":"AI + AD + AB",
     "remarques": "",
     "incapacites": [1,2],
     "coma": false
@@ -294,6 +366,9 @@
     "blessures": "Brulures",
     "examens": "Auscultation : Brulures 1er degré [ZONE] // Echo : RAS",
     "traitements": "Nettoyage + Biafine + Bandages",
+    "chir":"",
+    "manipulation":"Nettoyage + Biafine + Bandages",
+    "medicaments":"",
     "remarques": "",
     "incapacites": [],
     "coma": false
@@ -306,6 +381,9 @@
     "blessures": "Brulures",
     "examens": "Auscultation : Brulures 2e degré [ZONE] // Echo : RAS",
     "traitements": "Chir AL : Nettoyage + tulles gras + bandages + AI + AD + AB",
+    "chir":"AL",
+    "manipulation":"Nettoyage + tulles gras + bandages",
+    "medicaments":"AI + AD + AB",
     "remarques": "",
     "incapacites": [1,2],
     "coma": false
@@ -318,6 +396,9 @@
     "blessures": "Brulures",
     "examens": "Auscultation : Brulures 3e degré [ZONE] // Echo : RAS",
     "traitements": "Chir AG :  Nettoyage + pose greffon synthétique + bandages + AB + AD + AI",
+    "chir":"AG",
+    "manipulation":"Nettoyage + pose greffon synthétique + bandages",
+    "medicaments":"AB + AD + AI",
     "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
@@ -330,6 +411,9 @@
     "blessures": "Explosion",
     "examens": "Auscultation : Brulures 3e degré [ZONE] // Echo : RAS",
     "traitements": "Chir AG :  Nettoyage + pose greffon synthétique + bandages + AB + AD + AI",
+    "chir":"AG",
+    "manipulation":"Nettoyage + pose greffon synthétique + bandages",
+    "medicaments":"AB + AD + AI",
     "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
@@ -342,6 +426,9 @@
     "blessures": "Coup de [ARME] [ZONE]",
     "examens": "Radio + Echo :  Lacération [ZONE]",
     "traitements": "Chir AL : Nettoyage + cautérisation + PDSR  Musculaire + PDSR Cutané + bandage + AD + AI + AB",
+    "chir":"AL",
+    "manipulation":"Nettoyage + cautérisation + PDSR  Musculaire + PDSR Cutané + bandage",
+    "medicaments":"AD + AI + AB",
     "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
@@ -353,7 +440,10 @@
     "dureeInvalidite": "01:00:00",
     "blessures": "BPB [CATEGORIE] [GPB OU PAS]",
     "examens": "Radio + Echo : BNT [ZONE]",
-    "traitements": "Chir AG : retrait balle + cautérisation + PDSR  Musculaire + PDSR Cutané + bandage + AD + AI + AB  + AC",
+    "traitements": "Chir AG : retrait balle + cautérisation + PDSR  Musculaire + PDSR Cutané + bandage + AD + AI + AB + AC",
+    "chir":"AG",
+    "manipulation":"retrait balle + cautérisation + PDSR  Musculaire + PDSR Cutané + bandage",
+    "medicaments":"AD + AI + AB + AC",
     "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
@@ -366,6 +456,9 @@
     "blessures": "BPB [CATEGORIE] [GPB OU PAS]",
     "examens": "Radio + Echo : BT [ZONE]",
     "traitements": "Chir AG : cautérisation + PDSR  Musculaire + PDSR Cutané + bandage + AD + AI + AB + AC",
+    "chir":"AG",
+    "manipulation":"cautérisation + PDSR  Musculaire + PDSR Cutané + bandage",
+    "medicaments":"AD + AI + AB + AC",
     "remarques": "",
     "incapacites": [1,2,3,4],
     "coma": true
