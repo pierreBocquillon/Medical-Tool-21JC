@@ -24,3 +24,22 @@ window.setTextFieldValue = (selector, value) => {
   el.dispatchEvent(new Event('change', { bubbles: true }))
   el.dispatchEvent(new Event('blur', { bubbles: true }))
 }
+
+// Injecte une valeur dans un champ texte si vide
+window.setTextFieldValueIfEmpty = (selector, value) => {
+  let el = document.querySelector(selector)
+  if (!el || el.value) return
+  window.setTextFieldValue(selector, value)
+}
+
+// Injecte une valeur dans un champ texte si plus petite
+window.setTextFieldValueIfMax = (selector, value) => {
+  let el = document.querySelector(selector)
+  if (!el) return
+
+  let parsedElValue = el.value.replace(/\D/g, "")
+  let parsedValue = value.replace(/\D/g, "")
+
+  if (parsedElValue >= parsedValue) return
+  window.setTextFieldValue(selector, value)
+}

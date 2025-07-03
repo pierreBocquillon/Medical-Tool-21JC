@@ -1,0 +1,965 @@
+{
+  "-- Ajouter une blessure --": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "",
+    "blessures": [],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : [],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": []
+  },
+  
+  "VC": {
+    "type": "Note interne",
+    "codePostal": "8040",
+    "dureeInvalidite": "",
+    "blessures": ["VC"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : [],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": ["FDS"]
+    },
+    "incapacites": []
+  },
+  
+  "VM - Civil": {
+    "type": "Note interne",
+    "codePostal": "8040",
+    "dureeInvalidite": "",
+    "blessures": ["VM"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : [],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": ["VISITE MEDICALE // [APPROUVÉ AU SERVICE]"]
+    },
+    "incapacites": []
+  },
+  
+  "VM - Services publics": {
+    "type": "Note interne",
+    "codePostal": "8040",
+    "dureeInvalidite": "",
+    "blessures": ["VM"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : [],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": ["VISITE MEDICALE // TEST EFFORT [OK] // [APPROUVÉ AU SERVICE]"]
+    },
+    "incapacites": []
+  },
+  
+  "Déshydratation": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:30:00",
+    "blessures": ["Déshydratation"],
+    "examens": {
+      "Constantes": ["Faibles"],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Poche réhydratante"],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+  
+  "Hypoglycémie": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:30:00",
+    "blessures": ["Hypoglycémie"],
+    "examens": {
+      "Constantes": ["Faibles"],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Poche de glucose"],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+  
+  "Entorse": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:30:00",
+    "blessures": ["[RAISON ENTORSE]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": ["RAS"],
+      "Echo": ["Entorse [Zone]"],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Attelle souple [Zone]"],
+      "Medicaments": ["AD", "AI"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+
+  "Fracture nette": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "01:00:00",
+    "blessures": ["[RAISON FRACTURE]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": ["Fracture nette [OS]"],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Attelle rigide [Zone]"],
+      "Medicaments": ["AD", "AI"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+
+  "Fracture déplacée": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "01:00:00",
+    "blessures": ["[RAISON FRACTURE]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": ["Fracture déplacée [OS]"],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : ["Nettoyages fragments", "Os réaxé", "Pose plaque et vis (Mg)", "PDSR musculaires", "PDSR cutanés"],
+      "Chir AL" : [],
+      "Manipulations" : ["Attelle rigide [Zone]"],
+      "Medicaments": ["AD", "AI", "AB"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+
+  "Petit hématomes sous dural": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "01:00:00",
+    "blessures": ["[RAISON HEMATOME]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": ["Hématomes sous dural leger"],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Repos"],
+      "Medicaments": ["AD", "AI"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2,3]
+  },
+
+  "Hématomes sous dural": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "02:00:00",
+    "blessures": ["[RAISON HEMATOME]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": ["Hématomes sous dural"],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : ["Trépanation", "Drainage", "Rebouchage (composite)", "PDSR cutanés"],
+      "Chir AL" : [],
+      "Manipulations" : ["Bandage humide"],
+      "Medicaments": ["AD", "AI", "AB"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2,3]
+  },
+
+  "Tassement de vertèbres": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "02:00:00",
+    "blessures": ["[RAISON TASSEMENT]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": ["Tassement de vertèbres"],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : ["Injection de gaz intervertébral"],
+      "Manipulations" : ["Strips"],
+      "Medicaments": ["AD", "AI", "AB"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2,3]
+  },
+
+  "Intoxication fumées": {
+    
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:30:00",
+    "blessures": ["Intoxication fumées"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": ["Particules dans les poumons", "Brulures superficielle des bronches"],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Oxygénothérapie"],
+      "Medicaments": ["AD", "AI", "AB"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+
+  "Brulure 1e degré": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:30:00",
+    "blessures": ["Brulures"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": ["Brulure 1e degré [Zone]"],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Nettoyage", "Biafine", "Bandages"],
+      "Medicaments": ["AD", "AI", "AB"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+
+  "Brulure 2e degré": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:30:00",
+    "blessures": ["Brulures"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": ["Brulure 2e degré [Zone]"],
+      "Radio": [],
+      "Echo": ["RAS"],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : ["Nettoyage", "Tulles gras"],
+      "Manipulations" : ["Bandages"],
+      "Medicaments": ["AD", "AI", "AB"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+
+  "Brulure 3e degré": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:45:00",
+    "blessures": ["Brulures"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": ["Brulure 3e degré [Zone]"],
+      "Radio": [],
+      "Echo": ["RAS"],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : ["Nettoyage", "Pose greffon synthétique"],
+      "Chir AL" : [],
+      "Manipulations" : ["Bandages"],
+      "Medicaments": ["AD", "AI", "AB"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2,3,4]
+  },
+
+  "Noyade": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:45:00",
+    "blessures": ["Noyade"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": ["Présence d’eau dans les poumons"],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : ["Nettoyage", "Pose greffon synthétique"],
+      "Chir AL" : [],
+      "Manipulations" : ["Expectorants"],
+      "Medicaments": ["AD", "AI", "AB", "AF"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+
+  "Morsure animal": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:30:00",
+    "blessures": ["Morsure animal"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": ["Morsure [Zone]"],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : ["Nettoyage", "PDSR cutanés"],
+      "Manipulations" : ["Bandages"],
+      "Medicaments": ["AD", "AI", "AB"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+
+  "Blessure arme contondante": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "01:00:00",
+    "blessures": ["Coup de [ARME] [ZONE]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": ["Hématome [ZONE]"],
+      "Radio": ["RAS"],
+      "Echo": ["RAS"],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Bandage compressif"],
+      "Medicaments": ["AD", "AI"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2]
+  },
+
+  "Blessure arme blanche": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "01:00:00",
+    "blessures": ["Coup de [ARME] [ZONE]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": ["Lacération [ZONE]"],
+      "Radio": ["RAS"],
+      "Echo": ["Perforation [MUSCLE]"],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : ["Nettoyage", "cautérisation", "PDSR musculaires", "PDSR cutanés"],
+      "Manipulations" : ["Bandages"],
+      "Medicaments": ["AD", "AI", "AB"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2,3,4]
+  },
+
+  "BPB NT": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "01:00:00",
+    "blessures": ["BPB [CATEGORIE] [GPB OU PAS]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": ["BNT [ZONE]"],
+      "Echo": ["Perforation [MUSCLE]"],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : ["Retrait balle", "Cautérisation", "PDSR musculaires", "PDSR cutanés"],
+      "Chir AL" : [],
+      "Manipulations" : ["Bandages"],
+      "Medicaments": ["AD", "AI", "AB", "AC"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2,3,4]
+  },
+
+  "BPB T": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "01:00:00",
+    "blessures": ["BPB [CATEGORIE] [GPB OU PAS]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": ["BT [ZONE]"],
+      "Echo": ["Perforation [MUSCLE]"],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : ["Cautérisation", "PDSR musculaires", "PDSR cutanés"],
+      "Chir AL" : [],
+      "Manipulations" : ["Bandages"],
+      "Medicaments": ["AD", "AI", "AB", "AC"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2,3,4]
+  },
+
+  "Retrait tatouages": {
+    "type": "Note interne",
+    "codePostal": "8040",
+    "dureeInvalidite": "",
+    "blessures": ["Retrait tatouage x[NOMBRE] ([ZONE])"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Crème anesthésiante", "Retrait tatouages", "Pansement"],
+      "Medicaments": ["Pommade cicatrisante"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": ["2000$"],
+      "Autres": ["VC dans 24H"]
+    },
+    "incapacites": []
+  },
+
+  "Allergie": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "",
+    "blessures": ["Réaction allergique [ALLERGENE]"],
+    "examens": {
+      "Constantes": ["Faibles"],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Repos"],
+      "Medicaments": ["Antistaminiques"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": []
+  },
+
+  "Choc anaphylactique": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:45:00",
+    "blessures": ["Choc anaphylactique [ALLERGENE]"],
+    "examens": {
+      "Constantes": ["Faibles"],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": ["RAS"],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["En observation"],
+      "Medicaments": ["Epinéphrine"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": []
+  },
+
+  "Conso alcool": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "",
+    "blessures": ["Consomation d'alcool"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": ["[MEUSURE]g/L"],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Dégrisement"],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": []
+  },
+
+  "Coma éthylique": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:30:00",
+    "blessures": ["Coma éthylique"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": ["[MEUSURE]g/L"],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Lavage d’estomac", "Dégrisement"],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": []
+  },
+
+  "Conso drogue douce": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:15:00",
+    "blessures": ["Consomation de stupefiants"],
+    "examens": {
+      "Constantes": ["Faibles"],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": ["Positif [DROGUE]"],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Repos"],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": ["En observation"]
+    },
+    "incapacites": []
+  },
+
+  "Conso drogue dure": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:30:00",
+    "blessures": ["Consomation de stupefiants"],
+    "examens": {
+      "Constantes": ["Elevées"],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": ["Positif [DROGUE]"],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Repos"],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": ["En observation"]
+    },
+    "incapacites": []
+  },
+
+  "OD drogue douce": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:30:00",
+    "blessures": ["Overdose"],
+    "examens": {
+      "Constantes": ["Faibles"],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": ["Positif [DROGUE]"],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Repos"],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": ["En observation"]
+    },
+    "incapacites": []
+  },
+
+  "OD drogue dure": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "00:45:00",
+    "blessures": ["Overdose"],
+    "examens": {
+      "Constantes": ["Elevées"],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": ["Positif [DROGUE]"],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Repos"],
+      "Medicaments": [],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": ["En observation"]
+    },
+    "incapacites": []
+  }
+
+
+}
