@@ -27,7 +27,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": false
   },
   
   "VC": {
@@ -58,7 +59,8 @@
       "Facturation": [],
       "Autres": ["FDS"]
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": false
   },
   
   "VM - Civil": {
@@ -89,7 +91,8 @@
       "Facturation": [],
       "Autres": ["VISITE MEDICALE // [APPROUVÉ AU SERVICE]"]
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": false
   },
   
   "VM - Services publics": {
@@ -120,7 +123,8 @@
       "Facturation": [],
       "Autres": ["VISITE MEDICALE // TEST EFFORT [OK] // [APPROUVÉ AU SERVICE]"]
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": false
   },
   
   "Déshydratation": {
@@ -151,7 +155,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": true
   },
   
   "Hypoglycémie": {
@@ -182,7 +187,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": true
   },
   
   "Entorse": {
@@ -213,7 +219,40 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": false
+  },
+
+  "Fissure": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "01:00:00",
+    "blessures": ["[RAISON FISSURE]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": ["Fissure [OS]"],
+      "Echo": [],
+      "IRM": [],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Attelle rigide [Zone]"],
+      "Medicaments": ["AD", "AI"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2],
+    "coma": false
   },
 
   "Fracture nette": {
@@ -244,7 +283,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": false
   },
 
   "Fracture déplacée": {
@@ -275,7 +315,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": false
   },
 
   "Petit hématomes sous dural": {
@@ -306,7 +347,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2,3]
+    "incapacites": [1,2,3],
+    "coma": false
   },
 
   "Hématomes sous dural": {
@@ -337,7 +379,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2,3]
+    "incapacites": [1,2,3],
+    "coma": false
   },
 
   "Tassement de vertèbres": {
@@ -368,7 +411,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2,3]
+    "incapacites": [1,2,3],
+    "coma": false
   },
 
   "Intoxication fumées": {
@@ -400,7 +444,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": false
   },
 
   "Brulure 1e degré": {
@@ -431,7 +476,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": false
   },
 
   "Brulure 2e degré": {
@@ -462,7 +508,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": false
   },
 
   "Brulure 3e degré": {
@@ -493,7 +540,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2,3,4]
+    "incapacites": [1,2,3,4],
+    "coma": false
   },
 
   "Noyade": {
@@ -513,7 +561,7 @@
       "Autres": []
     },
     "traitements": {
-      "Chir AG" : ["Nettoyage", "Pose greffon synthétique"],
+      "Chir AG" : [],
       "Chir AL" : [],
       "Manipulations" : ["Expectorants"],
       "Medicaments": ["AD", "AI", "AB", "AF"],
@@ -524,7 +572,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": true
   },
 
   "Morsure animal": {
@@ -555,7 +604,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": false
   },
 
   "Blessure arme contondante": {
@@ -586,7 +636,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2]
+    "incapacites": [1,2],
+    "coma": false
   },
 
   "Blessure arme blanche": {
@@ -617,7 +668,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2,3,4]
+    "incapacites": [1,2,3,4],
+    "coma": false
   },
 
   "BPB NT": {
@@ -648,7 +700,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2,3,4]
+    "incapacites": [1,2,3,4],
+    "coma": false
   },
 
   "BPB T": {
@@ -679,7 +732,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": [1,2,3,4]
+    "incapacites": [1,2,3,4],
+    "coma": false
   },
 
   "Retrait tatouages": {
@@ -710,7 +764,8 @@
       "Facturation": ["2000$"],
       "Autres": ["VC dans 24H"]
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": false
   },
 
   "Allergie": {
@@ -741,7 +796,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": false
   },
 
   "Choc anaphylactique": {
@@ -772,7 +828,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": false
   },
 
   "Conso alcool": {
@@ -803,7 +860,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": false
   },
 
   "Coma éthylique": {
@@ -834,7 +892,8 @@
       "Facturation": [],
       "Autres": []
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": true
   },
 
   "Conso drogue douce": {
@@ -865,7 +924,8 @@
       "Facturation": [],
       "Autres": ["En observation"]
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": false
   },
 
   "Conso drogue dure": {
@@ -896,7 +956,8 @@
       "Facturation": [],
       "Autres": ["En observation"]
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": false
   },
 
   "OD drogue douce": {
@@ -927,7 +988,8 @@
       "Facturation": [],
       "Autres": ["En observation"]
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": true
   },
 
   "OD drogue dure": {
@@ -958,7 +1020,8 @@
       "Facturation": [],
       "Autres": ["En observation"]
     },
-    "incapacites": []
+    "incapacites": [],
+    "coma": true
   }
 
 

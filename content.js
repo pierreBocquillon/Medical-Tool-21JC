@@ -1,4 +1,6 @@
+
 (async () => {
+  const secretCode = "21JC"
   const injuries = await fetch(chrome.runtime.getURL("data/injuries.json")).then(res => res.json())
 
   /** Crée uniquement le menu déroulant des cas types */
@@ -100,9 +102,9 @@
       if (box && !box.checked && box.checked !== (data.incapacites || []).includes(num)) box.click()
     })
 
-    // const comaLabel = [...document.querySelectorAll("label")].find(l => l.textContent.includes("Coma"))
-    // const comaBox = comaLabel?.querySelector('input[name="disability"]')
-    // if (comaBox && comaBox.checked !== !!data.coma) comaBox.click()
+    const comaLabel = [...document.querySelectorAll("label")].find(l => l.textContent.includes("Coma"))
+    const comaBox = comaLabel?.querySelector('input[name="disability"]')
+    if (comaBox && !comaBox.checked && comaBox.checked !== !!data.coma) comaBox.click()
 
     setTimeout(() => {
       const select = document.querySelector("#rapport-helper-select")
@@ -402,11 +404,29 @@
     const version = chrome.runtime.getManifest().version
     const title = document.createElement("p")
     title.innerHTML = `Medical Tool 21JC </br> v${version}`
+    if(localStorage.getItem("user") != atob(secretCode)) {
+      title.innerHTML += ` - Lite`
+      title.innerHTML += `<br> <a id="unlock-btn" style="color: #955C36; text-decoration: underline; cursor: pointer;">Debloquer</a>`
+    }
     title.style.cssText = "color: #5C9336; font-size: 14px; margin: 0; text-align: center;"
 
     iconContainer.appendChild(icon)
     iconContainer.appendChild(title)
     document.body.appendChild(iconContainer)
+
+    const unlockBtn = document.getElementById("unlock-btn")
+    if (unlockBtn) {
+      unlockBtn.addEventListener("click", () => {
+        const user = prompt("Entrez le code de déblocage :")
+        localStorage.setItem("user", atob(user))
+        if (user === secretCode) {
+          alert("Toutes les fonctionnalités ont été débloquées !")
+          location.reload()
+        } else {
+          alert("Code incorrect. Essayez à nouveau.")
+        }
+      })
+    }
   }
 
   /** Injection : bouton VM */
@@ -452,8 +472,10 @@
   /** Boucles d’injection toutes les 500 ms */
   setInterval(() => {
     injectIcon()
-    injectSelect()
-    injectAlert()
+    if(localStorage.getItem("user") == atob(secretCode)) {
+      injectSelect()
+      injectAlert()
+    }
     injectDateCalculatorButton()
     injectVMButton()
     injectDDSButton()
