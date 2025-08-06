@@ -125,6 +125,10 @@
     window.setTextFieldValue('textarea[name="injuriesRemark"]', newValue.join(" + "))
   }
 
+  function addExamensString(examens) {
+    window.setTextFieldValue('textarea[name="examinationsRemark"]', examens)
+  }
+
   /** Ajoute les examens au formulaire */
   function addExamens(examens) {
     let field = document.querySelector('textarea[name="examinationsRemark"]')
@@ -273,6 +277,10 @@
     window.setTextFieldValue('textarea[name="treatmentsRemark"]', newValue)
   }
 
+  function addRemarquesString(remarks) {
+    window.setTextFieldValue('textarea[name="remark"]', remarks)
+  }
+
   /** Ajoute les remarques au formulaire */
   function addRemarques(remarques) {
     let field = document.querySelector('textarea[name="remark"]')
@@ -343,6 +351,30 @@
     window.setTextFieldValue('textarea[name="remark"]', newValue)
   }  
 
+  /** Charge les examens de la visite de contrôle */
+  function loadVCExams() {
+    const title = [...document.querySelectorAll("h5")].find(el => el.textContent.includes("Nouveau rapport medical") || el.textContent.includes("Modifier le rapport médical"))
+    if (!title || document.querySelector("#rapport-helper-select")) return
+
+    const setValue = (selector, value) => window.setTextFieldValue(selector, value)
+    const setValueIfEmpty = (selector, value) => window.setTextFieldValueIfEmpty(selector, value)
+
+    if (!(localStorage.getItem("VC_needed") == 'true')) return
+
+    setValue('input[name="type"]', 'Note interne')
+    setValueIfEmpty('input[name="zip"]', '8040')
+
+    addBlessures("VC")
+    addExamensString(localStorage.getItem("VC_Exams"))
+    addRemarquesString("FDS")
+
+    const now = new Date()
+    setValue('input[name="admission"]', window.formatDateFR(now))
+
+    localStorage.setItem("VC_needed", false)
+    localStorage.setItem("VC_Exams", "")
+  }
+
   /** Injection : menu déroulant */
   function injectSelect() {
     const title = [...document.querySelectorAll("h5")].find(el => el.textContent.includes("Nouveau rapport medical") || el.textContent.includes("Modifier le rapport médical"))
@@ -404,29 +436,46 @@
     const version = chrome.runtime.getManifest().version
     const title = document.createElement("p")
     title.innerHTML = `Medical Tool 21JC </br> v${version}`
-    if(localStorage.getItem("user") != atob(secretCode)) {
-      title.innerHTML += ` - Lite`
-      title.innerHTML += `<br> <a id="unlock-btn" style="color: #955C36; text-decoration: underline; cursor: pointer;">Debloquer</a>`
-    }
     title.style.cssText = "color: #5C9336; font-size: 14px; margin: 0; text-align: center;"
 
     iconContainer.appendChild(icon)
     iconContainer.appendChild(title)
     document.body.appendChild(iconContainer)
+  }
 
-    const unlockBtn = document.getElementById("unlock-btn")
-    if (unlockBtn) {
-      unlockBtn.addEventListener("click", () => {
-        const user = prompt("Entrez le code de déblocage :")
-        localStorage.setItem("user", atob(user))
-        if (user === secretCode) {
-          alert("Toutes les fonctionnalités ont été débloquées !")
-          location.reload()
-        } else {
-          alert("Code incorrect. Essayez à nouveau.")
-        }
-      })
-    }
+  /** Injection : bouton groupe sanguin */
+  function injectBloodTypeButton() {
+    if (document.getElementById("modif-blood-btn")) return
+
+    const bloodTypeInput = document.querySelector('input[name="bloodgroup"]')
+    if (!bloodTypeInput) return
+
+    const remarquesInput = document.querySelector('textarea[name="remark"]')
+    if (!remarquesInput) return
+
+    const input = document.querySelector('input[name="smoking"]')
+    if (!input) return
+
+    const btn = document.createElement("button")
+    btn.id = "modif-blood-btn"
+    btn.type = "button"
+    btn.textContent = "🩸 Groupe sanguin aléatoire"
+    btn.style.cssText = "margin-top: 4px; background-color: #2a2a2a; color: #eee; border: 1px solid #555; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%;"
+
+    btn.addEventListener("click", () => {
+      let bloodTypes = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]
+      const randomBloodType = bloodTypes[Math.floor(Math.random() * bloodTypes.length)]
+
+      const bloodSetter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(bloodTypeInput), 'value')?.set
+      if (bloodSetter) bloodSetter.call(bloodTypeInput, randomBloodType)
+      bloodTypeInput.dispatchEvent(new Event('input', { bubbles: true }))
+      bloodTypeInput.dispatchEvent(new Event('change', { bubbles: true }))
+    })
+
+    const wrapper = document.createElement("div")
+    wrapper.style.marginTop = "4px"
+    wrapper.appendChild(btn)
+    input.parentElement.parentElement.parentElement.appendChild(wrapper)
   }
 
   /** Injection : bouton VM */
@@ -445,6 +494,43 @@
     const input = document.querySelector('input[name="bloodDonationDate"]')
     if (!input) return
     injectDateButton("🩸 DDS Maintenant", "modif-dds-btn", input)
+  }
+  /** Injection : bouton VC */
+  function injectVCButton() {
+    const divList = document.querySelectorAll('div[role="menu"]')
+    if (divList.length == 0) return
+
+    for(const div of divList) {
+      if (div.querySelector("#modif-vc-btn")) continue
+      if (["VC","VM"].includes(div.parentElement.parentElement.querySelector('div[data-field="injuriesRemark"]').querySelector('div[role="presentation"]').innerText.trim().toUpperCase())) continue
+
+      const btn = document.createElement("button")
+      btn.id = "modif-vc-btn"
+      btn.type = "button"
+      btn.textContent = "🔬 VC"
+      btn.style.cssText = "margin-top: 4px; background-color: #2a2a2a; color: #eee; border: 1px solid #555; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%;"
+
+      btn.addEventListener("click", () => {
+        let exams = div.parentElement.parentElement.querySelector('div[data-field="examinationsRemark"]').querySelector('div[role="presentation"]').innerText.trim()
+
+        let parsedExams = exams.split("//").filter(s => s.includes(":")).map(s => s.trim().split(":")[0].trim()).map(s => s + " : RAS").filter(s => s)
+        let examString = parsedExams.join(" // ")
+
+        localStorage.setItem("VC_Exams", examString)
+        localStorage.setItem("VC_needed", true)
+
+        let newEntryButton = document.querySelector('div[class="MuiDataGrid-toolbarContainer css-1yqais2"]').querySelectorAll('button[type="button"]')[4]
+        if (newEntryButton) {
+          newEntryButton.click()
+        }
+      })
+
+      const wrapper = document.createElement("div")
+      wrapper.style.marginTop = "4px"
+      wrapper.appendChild(btn)
+      div.appendChild(wrapper)
+      break
+    }
   }
 
   /** Utilitaire de création de bouton de date immédiate */
@@ -472,12 +558,16 @@
   /** Boucles d’injection toutes les 500 ms */
   setInterval(() => {
     injectIcon()
-    if(localStorage.getItem("user") == atob(secretCode)) {
-      injectSelect()
-      injectAlert()
-    }
+
+    loadVCExams()
+    injectSelect()
+    injectAlert()
     injectDateCalculatorButton()
+
+    injectBloodTypeButton()
     injectVMButton()
     injectDDSButton()
+
+    injectVCButton()
   }, 500)
 })()
