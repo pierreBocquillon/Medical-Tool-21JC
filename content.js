@@ -185,6 +185,10 @@
     window.setTextFieldValue('textarea[name="examinationsRemark"]', newValue)
   }
 
+  function addTraitementsString(traitements) {
+    window.setTextFieldValue('textarea[name="treatmentsRemark"]', traitements)
+  }
+
   /** Ajoute les traitements au formulaire */
   function addTraitements(traitements) {
     let field = document.querySelector('textarea[name="treatmentsRemark"]')
@@ -365,14 +369,23 @@
     setValueIfEmpty('input[name="zip"]', '8040')
 
     addBlessures("VC")
+    
     addExamensString(localStorage.getItem("VC_Exams"))
-    addRemarquesString("FDS")
+    addTraitementsString(localStorage.getItem("VC_Treatments"))
+
+    if(localStorage.getItem("VC_Remarks") && localStorage.getItem("VC_Remarks").trim().length > 0) {
+      addRemarquesString(localStorage.getItem("VC_Remarks") + " + FDS")
+    }else {
+      addRemarquesString("FDS")
+    }
 
     const now = new Date()
     setValue('input[name="admission"]', window.formatDateFR(now))
 
     localStorage.setItem("VC_needed", false)
     localStorage.setItem("VC_Exams", "")
+    localStorage.setItem("VC_Treatments", "")
+    localStorage.setItem("VC_Remarks", "")
   }
 
   /** Injection : menu déroulant */
@@ -511,12 +524,51 @@
       btn.style.cssText = "margin-top: 4px; background-color: #2a2a2a; color: #eee; border: 1px solid #555; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%;"
 
       btn.addEventListener("click", () => {
-        let exams = div.parentElement.parentElement.querySelector('div[data-field="examinationsRemark"]').querySelector('div[role="presentation"]').innerText.trim()
+        let examList = ["Constantes", "Auscultation", "Radio", "Echo", "IRM", "Scanner", "Ethylometre", "Test salivaire"]
+        let treatmentList = ["pansements","bandages","attelle rigide", "attelle souple", "minerve","collier cervical","corset","strips"]
+        let remarkList = ["fauteuil", "canne"]
 
-        let parsedExams = exams.split("//").filter(s => s.includes(":")).map(s => s.trim().split(":")[0].trim()).map(s => s + " : RAS").filter(s => s)
-        let examString = parsedExams.join(" // ")
+        let exams = div.parentElement.parentElement.querySelector('div[data-field="examinationsRemark"]').querySelector('div[role="presentation"]').innerText.trim().toLowerCase()
+        let treatments = div.parentElement.parentElement.querySelector('div[data-field="treatmentsRemark"]').querySelector('div[role="presentation"]').innerText.trim().toLowerCase()
+        let remarks = div.parentElement.parentElement.querySelector('div[data-field="remark"]').querySelector('div[role="presentation"]').innerText.trim().toLowerCase()
 
-        localStorage.setItem("VC_Exams", examString)
+        // let parsedExams = exams.split("//").filter(s => s.includes(":")).map(s => s.trim().split(":")[0].trim()).map(s => s + " : RAS").filter(s => s)
+        // let examString = parsedExams.join(" // ")
+
+        let examData = []
+        let treatmentData = []
+        let remarkData = []
+
+        for(let examElement of examList){
+          if(exams.includes(examElement.toLowerCase()) ||  window.contientApprox(exams, examElement.toLowerCase(), 1)) {
+            examData.push(`${examElement} : RAS`)
+          }
+        }
+
+        for(let treatmentElement of treatmentList){
+          if(treatments.includes(treatmentElement.toLowerCase()) ||  window.contientApprox(treatments, treatmentElement.toLowerCase(), 1)) {
+            treatmentData.push(`${treatmentElement}`)
+          }
+        }
+
+        for(let remarkElement of remarkList){
+          if(remarks.includes(remarkElement.toLowerCase()) ||  window.contientApprox(remarks, remarkElement.toLowerCase(), 1)) {
+            remarkData.push(`${remarkElement}`)
+          }
+        }
+
+        if (examData.length > 0) {
+          localStorage.setItem("VC_Exams", examData.join(" // "))
+        }
+
+        if (treatmentData.length > 0) {
+          localStorage.setItem("VC_Treatments", "Retrait " + treatmentData.join(" + "))
+        }
+
+        if (remarkData.length > 0) {
+          localStorage.setItem("VC_Remarks", "Récupération " + remarkData.join(" + "))
+        }
+
         localStorage.setItem("VC_needed", true)
 
         let newEntryButton = document.querySelector('div[class="MuiDataGrid-toolbarContainer css-1yqais2"]').querySelectorAll('button[type="button"]')[4]

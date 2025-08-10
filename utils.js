@@ -4,6 +4,47 @@ window.formatDateFR = (date) => {
   return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}`
 }
 
+// Calcule la distance de Levenshtein entre deux chaînes
+window.levenshtein = (a, b) => {
+    const matrix = []
+    let i, j;
+
+    // Si l'un des deux est vide
+    if (!a.length) return b.length
+    if (!b.length) return a.length
+
+    // Initialisation
+    for (i = 0; i <= b.length; i++) {
+        matrix[i] = [i]
+    }
+    for (j = 0; j <= a.length; j++) {
+        matrix[0][j] = j
+    }
+
+    // Remplissage
+    for (i = 1; i <= b.length; i++) {
+        for (j = 1; j <= a.length; j++) {
+            if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                matrix[i][j] = matrix[i - 1][j - 1]
+            } else {
+                matrix[i][j] = Math.min(
+                    matrix[i - 1][j - 1] + 1,
+                    matrix[i][j - 1] + 1,
+                    matrix[i - 1][j] + 1
+                )
+            }
+        }
+    }
+
+    return matrix[b.length][a.length]
+}
+
+// Vérifie si un mot est présent dans un texte avec une tolérance d'approximation
+window.contientApprox = (texte, mot, tolerance = 2) => {
+    const mots = texte.toLowerCase().split(/\W+/);
+    return mots.some(m => levenshtein(m, mot.toLowerCase()) <= tolerance);
+}
+
 // Parse une chaîne de date au format DD/MM/YYYY HH:mm vers un objet Date JS
 window.parseDateFR = (str) => {
   let [datePart, timePart] = str.split(' ')
