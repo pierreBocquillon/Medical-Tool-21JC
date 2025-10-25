@@ -607,9 +607,72 @@
     input.parentElement.parentElement.appendChild(wrapper)
   }
 
+  function createCustomMenuItem(icon, title, link) {
+    const menuItem = document.createElement("div")
+    menuItem.className = "lsesToolItem"
+    menuItem.innerHTML = `
+      <a color="inherit" class="link_nav css-16qv2i2" href="${link}" target="_blank">
+        <div class="MuiBox-root css-1ty8yy2">
+          <div class="MuiButtonBase-root MuiListItemButton-root MuiListItemButton-gutters MuiListItemButton-root MuiListItemButton-gutters  css-12rz11a" tabindex="0" role="button" aria-label="Rapports Medicaux" style="height: 50px;">
+            <div class="MuiListItemIcon-root css-5n5rd1">
+              ${icon}
+            </div>
+            <div class="MuiListItemText-root css-1tsvksn">
+              <p class="MuiTypography-root MuiTypography-body1 css-18r5fht" style="white-space: normal;">
+                ${title}
+              </p>
+            </div>
+            <span class="MuiTouchRipple-root css-w0pj6f"></span>
+          </div>
+        </div>
+      </a>
+    `
+    return menuItem
+  }
+
+  /** Injection des items de menu */
+  function injectMenuItems() {
+    const targets = document.querySelectorAll('.lsesToolItem')
+    if (!window.location.href.includes("https://intra.21jumpclick.fr")) {
+      targets.forEach(target => target.remove())
+      return
+    }
+    if (targets.length > 0) return
+    
+
+    let items = [
+      {
+        icon: `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="truck-medical" class="svg-inline--fa fa-truck-medical " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" color="#fff"><path fill="currentColor" d="M0 48C0 21.5 21.5 0 48 0H368c26.5 0 48 21.5 48 48V96h50.7c17 0 33.3 6.7 45.3 18.7L589.3 192c12 12 18.7 28.3 18.7 45.3V256v32 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H576c0 53-43 96-96 96s-96-43-96-96H256c0 53-43 96-96 96s-96-43-96-96H48c-26.5 0-48-21.5-48-48V48zM416 256H544V237.3L466.7 160H416v96zM160 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm368-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM176 80v48l-48 0c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V192h48c8.8 0 16-7.2 16-16V144c0-8.8-7.2-16-16-16H240V80c0-8.8-7.2-16-16-16H192c-8.8 0-16 7.2-16 16z"></path></svg>`,
+        title: "Dispatch",
+        link: "https://docs.google.com/spreadsheets/d/1Vho76MbebIo4d1RgpVL0wGFqbMjeK1e3HcirZV_C7Uk/edit?gid=180456797#gid=180456797"
+      },
+      {
+        icon: `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="book-medical" class="svg-inline--fa fa-book-medical " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" color="#fff"><path fill="currentColor" d="M0 96C0 43 43 0 96 0H384h32c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32H384 96c-53 0-96-43-96-96V96zM64 416c0 17.7 14.3 32 32 32H352V384H96c-17.7 0-32 14.3-32 32zM208 112v48H160c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V224h48c8.8 0 16-7.2 16-16V176c0-8.8-7.2-16-16-16H272V112c0-8.8-7.2-16-16-16H224c-8.8 0-16 7.2-16 16z"></path></svg>`,
+        title: "Stock",
+        link: "https://lses-inventory.web.app/"
+      }
+    ]
+
+    let childElement = document.querySelector("[href='/medical/files']")
+    if (!childElement) return
+    let parentElement = childElement.parentElement.parentElement
+    if (!parentElement) return
+
+    items.forEach(item => {
+      if (!document.querySelector(`.lsesToolItem a[href='${item.link}']`)) {
+        const menuItem = createCustomMenuItem(item.icon, item.title, item.link)
+        parentElement.appendChild(menuItem)
+      }
+    })
+  }
+
+
+
   /** Boucles d’injection toutes les 500 ms */
   setInterval(() => {
     injectIcon()
+
+    injectMenuItems()
 
     loadVCExams()
     injectSelect()
@@ -623,3 +686,5 @@
     injectVCButton()
   }, 500)
 })()
+
+

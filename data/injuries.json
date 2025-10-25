@@ -319,6 +319,70 @@
     "coma": false
   },
 
+  "Traumatisme crânien": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "01:00:00",
+    "blessures": ["[RAISON TRAUMATISME]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": ["Traumatisme crânien"],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Repos"],
+      "Medicaments": ["AD"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2,3],
+    "coma": false
+  },
+
+  "Commotion cérébrale": {
+    "type": "",
+    "codePostal": "",
+    "dureeInvalidite": "01:00:00",
+    "blessures": ["[RAISON COMMOTION]"],
+    "examens": {
+      "Constantes": [],
+      "Auscultation": [],
+      "Radio": [],
+      "Echo": [],
+      "IRM": ["Commotion cérébrale"],
+      "Scanner": [],
+      "Ethylometre": [],
+      "Test salivaire": [],
+      "Autres": []
+    },
+    "traitements": {
+      "Chir AG" : [],
+      "Chir AL" : [],
+      "Manipulations" : ["Repos"],
+      "Medicaments": ["AD"],
+      "Autres": []
+    },
+    "remarques": {
+      "Pret": [],
+      "Facturation": [],
+      "Autres": []
+    },
+    "incapacites": [1,2,3],
+    "coma": false
+  },
+
   "Petit hématomes sous dural": {
     "type": "",
     "codePostal": "",
@@ -339,7 +403,7 @@
       "Chir AG" : [],
       "Chir AL" : [],
       "Manipulations" : ["Repos"],
-      "Medicaments": ["AD", "AI"],
+      "Medicaments": ["AD"],
       "Autres": []
     },
     "remarques": {
@@ -371,7 +435,7 @@
       "Chir AG" : ["Trépanation", "Drainage", "Rebouchage (composite)", "PDSR cutanés"],
       "Chir AL" : [],
       "Manipulations" : ["Bandage humide"],
-      "Medicaments": ["AD", "AI", "AB"],
+      "Medicaments": ["AD", "AB"],
       "Autres": []
     },
     "remarques": {
