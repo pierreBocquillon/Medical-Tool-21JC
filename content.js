@@ -64,7 +64,8 @@
       if (!date || !duration || !duration.includes(":")) return
 
       const [h, m, s] = duration.split(":").map(Number)
-      const controlDate = new Date(date.getTime() + ((h * 3600 + m * 60 + s) * 1000))
+      const deltaTime = (new Date().getTimezoneOffset()/60)+2
+      const controlDate = new Date(date.getTime() + (((h+deltaTime) * 3600 + m * 60 + s) * 1000))
       window.setTextFieldValue('input[name="controlVisit"]', window.formatDateFR(controlDate))
     })
 
@@ -89,11 +90,14 @@
     addTraitements(data.traitements)
     addRemarques(data.remarques)
 
-    const now = new Date()
+    const deltaTime = (new Date().getTimezoneOffset()/60)+2
+
+    const now = new Date(new Date().getTime() + (deltaTime * 3600 * 1000))
     setValue('input[name="admission"]', window.formatDateFR(now))
 
     const [h, m, s] = data.dureeInvalidite.split(":").map(Number)
-    const ctrlDate = new Date(now.getTime() + ((h * 3600 + m * 60 + s) * 1000))
+
+    const ctrlDate = new Date(now.getTime() + (((h+deltaTime) * 3600 + m * 60 + s) * 1000))
     setValue('input[name="controlVisit"]', window.formatDateFR(ctrlDate))
 
     ;[1, 2, 3, 4].forEach(num => {
@@ -379,7 +383,8 @@
       addRemarquesString("FDS")
     }
 
-    const now = new Date()
+    const deltaTime = (new Date().getTimezoneOffset()/60)+2
+    const now = new Date(new Date().getTime() + (deltaTime * 3600 * 1000))
     setValue('input[name="admission"]', window.formatDateFR(now))
 
     localStorage.setItem("VC_needed", false)
@@ -448,8 +453,13 @@
 
     const version = chrome.runtime.getManifest().version
     const title = document.createElement("p")
-    title.innerHTML = `Medical Tool 21JC </br> v${version}`
+    title.innerHTML = `Medical Tool 21JC</br> v${version}`
     title.style.cssText = "color: #5C9336; font-size: 14px; margin: 0; text-align: center;"
+
+    // title.addEventListener("click", () => {
+    // //open an alert asking for the delta time
+    //   const userInput = prompt("Entrez le code secret pour accéder aux informations de version :")
+    // })
 
     iconContainer.appendChild(icon)
     iconContainer.appendChild(title)
@@ -594,7 +604,9 @@
     btn.style.cssText = "margin-top: 4px; background-color: #2a2a2a; color: #eee; border: 1px solid #555; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%;"
 
     btn.addEventListener("click", () => {
-      const dateStr = window.formatDateFR(new Date())
+      const deltaTime = (new Date().getTimezoneOffset()/60)+2
+      const now = new Date(new Date().getTime() + (deltaTime * 3600 * 1000))
+      const dateStr = window.formatDateFR(now)
       const setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(input), 'value')?.set
       if (setter) setter.call(input, dateStr)
       input.dispatchEvent(new Event('input', { bubbles: true }))
@@ -646,11 +658,11 @@
         title: "Dispatch",
         link: "https://docs.google.com/spreadsheets/d/1Vho76MbebIo4d1RgpVL0wGFqbMjeK1e3HcirZV_C7Uk/edit?gid=180456797#gid=180456797"
       },
-      {
-        icon: `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="book-medical" class="svg-inline--fa fa-book-medical " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" color="#fff"><path fill="currentColor" d="M0 96C0 43 43 0 96 0H384h32c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32H384 96c-53 0-96-43-96-96V96zM64 416c0 17.7 14.3 32 32 32H352V384H96c-17.7 0-32 14.3-32 32zM208 112v48H160c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V224h48c8.8 0 16-7.2 16-16V176c0-8.8-7.2-16-16-16H272V112c0-8.8-7.2-16-16-16H224c-8.8 0-16 7.2-16 16z"></path></svg>`,
-        title: "Stock",
-        link: "https://lses-inventory.web.app/"
-      }
+      // {
+      //   icon: `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="book-medical" class="svg-inline--fa fa-book-medical " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" color="#fff"><path fill="currentColor" d="M0 96C0 43 43 0 96 0H384h32c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32H384 96c-53 0-96-43-96-96V96zM64 416c0 17.7 14.3 32 32 32H352V384H96c-17.7 0-32 14.3-32 32zM208 112v48H160c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V224h48c8.8 0 16-7.2 16-16V176c0-8.8-7.2-16-16-16H272V112c0-8.8-7.2-16-16-16H224c-8.8 0-16 7.2-16 16z"></path></svg>`,
+      //   title: "Stock",
+      //   link: "https://lses-inventory.web.app/"
+      // }
     ]
 
     let childElement = document.querySelector("[href='/medical/files']")
