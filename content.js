@@ -64,7 +64,7 @@
       if (!date || !duration || !duration.includes(":")) return
 
       const [h, m, s] = duration.split(":").map(Number)
-      const deltaTime = (new Date().getTimezoneOffset()/60)+2
+      const deltaTime = (new Date().getTimezoneOffset()/60)-(window.getTimezoneOffsetFor('Europe/Paris')/60)
       const controlDate = new Date(date.getTime() + (((h+deltaTime) * 3600 + m * 60 + s) * 1000))
       window.setTextFieldValue('input[name="controlVisit"]', window.formatDateFR(controlDate))
     })
@@ -90,7 +90,7 @@
     addTraitements(data.traitements)
     addRemarques(data.remarques)
 
-    const deltaTime = (new Date().getTimezoneOffset()/60)+2
+    const deltaTime = (new Date().getTimezoneOffset()/60)-(window.getTimezoneOffsetFor('Europe/Paris')/60)
 
     const now = new Date(new Date().getTime() + (deltaTime * 3600 * 1000))
     setValue('input[name="admission"]', window.formatDateFR(now))
@@ -383,7 +383,7 @@
       addRemarquesString("FDS")
     }
 
-    const deltaTime = (new Date().getTimezoneOffset()/60)+2
+    const deltaTime = (new Date().getTimezoneOffset()/60)-(window.getTimezoneOffsetFor('Europe/Paris')/60)
     const now = new Date(new Date().getTime() + (deltaTime * 3600 * 1000))
     setValue('input[name="admission"]', window.formatDateFR(now))
 
@@ -604,7 +604,7 @@
     btn.style.cssText = "margin-top: 4px; background-color: #2a2a2a; color: #eee; border: 1px solid #555; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%;"
 
     btn.addEventListener("click", () => {
-      const deltaTime = (new Date().getTimezoneOffset()/60)+2
+      const deltaTime = (new Date().getTimezoneOffset()/60)-(window.getTimezoneOffsetFor('Europe/Paris')/60)
       const now = new Date(new Date().getTime() + (deltaTime * 3600 * 1000))
       const dateStr = window.formatDateFR(now)
       const setter = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(input), 'value')?.set

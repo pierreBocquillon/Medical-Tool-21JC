@@ -4,6 +4,16 @@ window.formatDateFR = (date) => {
   return `${pad(date.getDate())}/${pad(date.getMonth() + 1)}/${date.getFullYear()} ${pad(date.getHours())}:${pad(date.getMinutes())}`
 }
 
+// Get Timezone offset in hours
+window.getTimezoneOffsetFor = (timeZone, date = new Date()) => {
+  const utcDate = new Date(date.toLocaleString('en-US', { timeZone: 'UTC' }));
+  const tzDate = new Date(date.toLocaleString('en-US', { timeZone }));
+
+  // Même convention que getTimezoneOffset() :
+  // nombre de minutes à AJOUTER à l'heure locale pour obtenir l'heure UTC
+  return (utcDate - tzDate) / 60000;
+}
+
 // Calcule la distance de Levenshtein entre deux chaînes
 window.levenshtein = (a, b) => {
     const matrix = []
