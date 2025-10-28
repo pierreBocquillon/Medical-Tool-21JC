@@ -82,7 +82,9 @@
     const setValueIfMax = (selector, value) => window.setTextFieldValueIfMax(selector, value)
 
     setValue('input[name="type"]', data.type)
-    setValueIfEmpty('input[name="zip"]', data.codePostal)
+    let zip = data.codePostal
+    if (zip === "hospital_zip") zip = localStorage.getItem("user_hospital_zip") || "8040"
+    setValueIfEmpty('input[name="zip"]', zip)
     setValueIfMax('input[name="disabilityDuration"]', data.dureeInvalidite)
 
     addBlessures(data.blessures)
@@ -370,7 +372,8 @@
     if (!(localStorage.getItem("VC_needed") == 'true')) return
 
     setValue('input[name="type"]', 'Note interne')
-    setValueIfEmpty('input[name="zip"]', '8040')
+    zip = localStorage.getItem("user_hospital_zip") || "8040"
+    setValueIfEmpty('input[name="zip"]', zip)
 
     addBlessures("VC")
     
@@ -453,13 +456,21 @@
 
     const version = chrome.runtime.getManifest().version
     const title = document.createElement("p")
-    title.innerHTML = `Medical Tool 21JC</br> v${version}`
+    title.innerHTML = `Medical Tool 21JC</br> v${version} `
     title.style.cssText = "color: #5C9336; font-size: 14px; margin: 0; text-align: center;"
+    let configBtn = document.createElement("span")
+    configBtn.innerText = `🛠️`
+    configBtn.style.cssText = "cursor: pointer; font-size: 16px; margin-left: 6px;"
+    title.appendChild(configBtn)
 
-    // title.addEventListener("click", () => {
-    // //open an alert asking for the delta time
-    //   const userInput = prompt("Entrez le code secret pour accéder aux informations de version :")
-    // })
+    title.addEventListener("click", () => {
+      //open an alert asking for the delta time
+      const userZip = prompt("Entrez le code zip de votre hopital :")
+      if (userZip !== null) {
+        localStorage.setItem("user_hospital_zip", userZip.trim())
+        alert(`Code zip enregistré : ${userZip.trim()}`)
+      }
+    })
 
     iconContainer.appendChild(icon)
     iconContainer.appendChild(title)

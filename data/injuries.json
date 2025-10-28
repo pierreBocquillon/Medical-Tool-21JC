@@ -33,7 +33,7 @@
   
   "VC": {
     "type": "Note interne",
-    "codePostal": "8040",
+    "codePostal": "hospital_zip",
     "dureeInvalidite": "",
     "blessures": ["VC"],
     "examens": {
@@ -65,7 +65,7 @@
   
   "VM - Civil": {
     "type": "Note interne",
-    "codePostal": "8040",
+    "codePostal": "hospital_zip",
     "dureeInvalidite": "",
     "blessures": ["VM"],
     "examens": {
@@ -97,7 +97,7 @@
   
   "VM - Services publics": {
     "type": "Note interne",
-    "codePostal": "8040",
+    "codePostal": "hospital_zip",
     "dureeInvalidite": "",
     "blessures": ["VM"],
     "examens": {
@@ -802,7 +802,7 @@
 
   "Retrait tatouages": {
     "type": "Note interne",
-    "codePostal": "8040",
+    "codePostal": "hospital_zip",
     "dureeInvalidite": "",
     "blessures": ["Retrait tatouage x[NOMBRE] ([ZONE])"],
     "examens": {
