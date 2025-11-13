@@ -440,7 +440,7 @@
   /** Injection de l’icône de l’extension */
   function injectIcon() {
     const target = document.querySelector("#rapport-helper-icon-container")
-    if (!window.location.href.includes("https://intra.21jumpclick.fr/medical/files")) {
+    if (!window.location.href.includes("https://intra.21jumpclick.fr")) {
       if (target) target.remove()
       return
     }
@@ -448,23 +448,54 @@
 
     const iconContainer = document.createElement("div")
     iconContainer.id = "rapport-helper-icon-container"
-    iconContainer.style.cssText = "position: absolute; top: 10px; right: 10px; z-index: 9999; display: flex; flex-direction: column; align-items: center;"
+    iconContainer.style.cssText = "overflow: hidden; height: 60px; width:500px; position: fixed; top: 10px; right: -450px; z-index: 9999; display: flex; flex-direction: row; align-items: center; padding: 5px; background-color: rgba(44, 44, 44, .9); border-radius: 30px; transition: all 0.2s ease-in-out; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);"
+
+    sessionStorage.setItem("rapport_helper_menu_open", "false")
+
+    const leftRow = document.createElement("div")
+    leftRow.style.cssText = "display: flex; flex-direction: column; align-items: center;"
+
+    const rightRow = document.createElement("div")
+    rightRow.style.cssText = "display: flex; flex-direction: column; align-items: center;"
 
     const icon = document.createElement("img")
     icon.src = chrome.runtime.getURL("icons/128.png")
-    icon.style.cssText = "width: 48px; height: 48px; z-index: 1; border-radius: 16px;"
+    icon.style.cssText = "width: 100px; height: 100px; z-index: 1; border-radius: 16px;"
 
     const version = chrome.runtime.getManifest().version
     const title = document.createElement("p")
     title.innerHTML = `Medical Tool 21JC</br> v${version} `
-    title.style.cssText = "color: #5C9336; font-size: 14px; margin: 0; text-align: center;"
-    let configBtn = document.createElement("span")
-    configBtn.innerText = `🛠️`
-    configBtn.style.cssText = "cursor: pointer; font-size: 16px; margin-left: 6px;"
+    title.style.cssText = "color: #5C9336; font-size: 16px; margin: 0; text-align: center;"
+
+
+    let configBtn = document.createElement("div")
+    configBtn.innerText = `🛠️ Zip par défaut`
+    configBtn.title = "Configurer le code zip de mon hôpital"
+    configBtn.style.cssText = "cursor: pointer; font-size: 16px; margin-left: 6px; color: white; background-color: #444; padding: 5px; margin: 5px 0; border-radius: 4px; width: 250px; text-align: center;"
     title.appendChild(configBtn)
 
-    title.addEventListener("click", () => {
-      //open an alert asking for the delta time
+
+    let lsesBtn = document.createElement("div")
+    lsesBtn.innerText = `🩵 Menu LSES`
+    lsesBtn.title = "Passer le menu en mode LSES"
+    lsesBtn.style.cssText = "cursor: pointer; font-size: 16px; margin-left: 6px; color: white; background-color: #444; padding: 5px; margin: 5px 0; border-radius: 4px; width: 250px; text-align: center;"
+    title.appendChild(lsesBtn)
+
+
+    let bcesBtn = document.createElement("div")
+    bcesBtn.innerText = `💚 Menu BCES`
+    bcesBtn.title = "Passer le menu en mode BCES"
+    bcesBtn.style.cssText = "cursor: pointer; font-size: 16px; margin-left: 6px; color: white; background-color: #444; padding: 5px; margin: 5px 0; border-radius: 4px; width: 250px; text-align: center;"
+    title.appendChild(bcesBtn)
+
+
+    let defaultBtn = document.createElement("div")
+    defaultBtn.innerText = `❌ Menu par defaut`
+    defaultBtn.title = "Passer le menu en mode BCES"
+    defaultBtn.style.cssText = "cursor: pointer; font-size: 16px; margin-left: 6px; color: white; background-color: #444; padding: 5px; margin: 5px 0; border-radius: 4px; width: 250px; text-align: center;"
+    title.appendChild(defaultBtn)
+
+    configBtn.addEventListener("click", () => {
       const userZip = prompt("Entrez le code zip de votre hopital :")
       if (userZip !== null) {
         localStorage.setItem("user_hospital_zip", userZip.trim())
@@ -472,8 +503,62 @@
       }
     })
 
-    iconContainer.appendChild(icon)
-    iconContainer.appendChild(title)
+    lsesBtn.addEventListener("click", () => {
+      const lsesConfirm = confirm("Etes vous sur de vouloir activer le menu LSES ?")
+      if (lsesConfirm) {
+        localStorage.setItem("user_hospital_name", 'LSES')
+        window.location.reload()
+      }
+    })
+
+    bcesBtn.addEventListener("click", () => {
+      const bcesConfirm = confirm("Etes vous sur de vouloir activer le menu BCES ?")
+      if (bcesConfirm) {
+        localStorage.setItem("user_hospital_name", 'BCES')
+        window.location.reload()
+      }
+    })
+
+    defaultBtn.addEventListener("click", () => {
+      const defaultConfirm = confirm("Etes vous sur de vouloir revenir au menu par defaut ?")
+      if (defaultConfirm) {
+        localStorage.setItem("user_hospital_name", 'DEFAULT')
+        window.location.reload()
+      }
+    })
+
+    openBtn = document.createElement("span")
+    openBtn.innerText = `<`
+    openBtn.title = "Ouvrir le menu d'aide aux rapports médicaux"
+    openBtn.style.cssText = "cursor: pointer; font-size: 24px; font-weight: thin; margin-right: 20px; background-color: #444; border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;"
+
+    openBtn.addEventListener("click", () => {
+      const isOpen = sessionStorage.getItem("rapport_helper_menu_open") === "true"
+      if (isOpen) {
+        iconContainer.style.right = "-450px"
+        sessionStorage.setItem("rapport_helper_menu_open", "false")
+        openBtn.innerText = `<`
+        setTimeout(() => {
+          iconContainer.style.height = "60px"
+        }, 150);
+      } else {
+        iconContainer.style.height = '350px'
+        setTimeout(() => {
+          iconContainer.style.right = "-150px"
+          sessionStorage.setItem("rapport_helper_menu_open", "true")
+          openBtn.innerText = `>`
+        }, 150);
+      }
+    })
+
+    leftRow.appendChild(openBtn)
+
+    rightRow.appendChild(icon)
+    rightRow.appendChild(title)
+
+    iconContainer.appendChild(leftRow)
+    iconContainer.appendChild(rightRow)
+
     document.body.appendChild(iconContainer)
   }
 
@@ -664,16 +749,27 @@
     
 
     let items = [
+      //LSES
       {
+        hopital: "LSES",
         icon: `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="truck-medical" class="svg-inline--fa fa-truck-medical " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" color="#fff"><path fill="currentColor" d="M0 48C0 21.5 21.5 0 48 0H368c26.5 0 48 21.5 48 48V96h50.7c17 0 33.3 6.7 45.3 18.7L589.3 192c12 12 18.7 28.3 18.7 45.3V256v32 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H576c0 53-43 96-96 96s-96-43-96-96H256c0 53-43 96-96 96s-96-43-96-96H48c-26.5 0-48-21.5-48-48V48zM416 256H544V237.3L466.7 160H416v96zM160 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm368-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM176 80v48l-48 0c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V192h48c8.8 0 16-7.2 16-16V144c0-8.8-7.2-16-16-16H240V80c0-8.8-7.2-16-16-16H192c-8.8 0-16 7.2-16 16z"></path></svg>`,
         title: "Dispatch",
         link: "https://docs.google.com/spreadsheets/d/1Vho76MbebIo4d1RgpVL0wGFqbMjeK1e3HcirZV_C7Uk/edit?gid=180456797#gid=180456797"
       },
-      // {
-      //   icon: `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="book-medical" class="svg-inline--fa fa-book-medical " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" color="#fff"><path fill="currentColor" d="M0 96C0 43 43 0 96 0H384h32c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32v64c17.7 0 32 14.3 32 32s-14.3 32-32 32H384 96c-53 0-96-43-96-96V96zM64 416c0 17.7 14.3 32 32 32H352V384H96c-17.7 0-32 14.3-32 32zM208 112v48H160c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V224h48c8.8 0 16-7.2 16-16V176c0-8.8-7.2-16-16-16H272V112c0-8.8-7.2-16-16-16H224c-8.8 0-16 7.2-16 16z"></path></svg>`,
-      //   title: "Stock",
-      //   link: "https://lses-inventory.web.app/"
-      // }
+      {
+        hopital: "LSES",
+        icon: `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="piggy-bank" class="svg-inline--fa fa-piggy-bank " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" color="#fff"><path fill="currentColor" d="M400 96l0 .7c-5.3-.4-10.6-.7-16-.7H256c-16.5 0-32.5 2.1-47.8 6c-.1-2-.2-4-.2-6c0-53 43-96 96-96s96 43 96 96zm-16 32c3.5 0 7 .1 10.4 .3c4.2 .3 8.4 .7 12.6 1.3C424.6 109.1 450.8 96 480 96h11.5c10.4 0 18 9.8 15.5 19.9l-13.8 55.2c15.8 14.8 28.7 32.8 37.5 52.9H544c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32H512c-9.1 12.1-19.9 22.9-32 32v64c0 17.7-14.3 32-32 32H416c-17.7 0-32-14.3-32-32V448H256v32c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32V416c-34.9-26.2-58.7-66.3-63.2-112H68c-37.6 0-68-30.4-68-68s30.4-68 68-68h4c13.3 0 24 10.7 24 24s-10.7 24-24 24H68c-11 0-20 9-20 20s9 20 20 20H99.2c12.1-59.8 57.7-107.5 116.3-122.8c12.9-3.4 26.5-5.2 40.5-5.2H384zm64 136a24 24 0 1 0 -48 0 24 24 0 1 0 48 0z"></path></svg>`,
+        title: "Stock",
+        link: "https://lses-inventory.web.app/"
+      },
+
+      //BCES
+      {
+        hopital: "BCES",
+        icon: `<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="truck-medical" class="svg-inline--fa fa-truck-medical " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" color="#fff"><path fill="currentColor" d="M0 48C0 21.5 21.5 0 48 0H368c26.5 0 48 21.5 48 48V96h50.7c17 0 33.3 6.7 45.3 18.7L589.3 192c12 12 18.7 28.3 18.7 45.3V256v32 64c17.7 0 32 14.3 32 32s-14.3 32-32 32H576c0 53-43 96-96 96s-96-43-96-96H256c0 53-43 96-96 96s-96-43-96-96H48c-26.5 0-48-21.5-48-48V48zM416 256H544V237.3L466.7 160H416v96zM160 464a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm368-48a48 48 0 1 0 -96 0 48 48 0 1 0 96 0zM176 80v48l-48 0c-8.8 0-16 7.2-16 16v32c0 8.8 7.2 16 16 16h48v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16V192h48c8.8 0 16-7.2 16-16V144c0-8.8-7.2-16-16-16H240V80c0-8.8-7.2-16-16-16H192c-8.8 0-16 7.2-16 16z"></path></svg>`,
+        title: "Dispatch",
+        link: "https://docs.google.com/spreadsheets/d/1Vho76MbebIo4d1RgpVL0wGFqbMjeK1e3HcirZV_C7Uk/edit?gid=1466825062#gid=1466825062"
+      },
     ]
 
     let childElement = document.querySelector("[href='/medical/files']")
@@ -683,6 +779,8 @@
 
     items.forEach(item => {
       if (!document.querySelector(`.lsesToolItem a[href='${item.link}']`)) {
+        const userHospital = localStorage.getItem("user_hospital_name") || ""
+        if (item.hopital && item.hopital !== userHospital) return
         const menuItem = createCustomMenuItem(item.icon, item.title, item.link)
         parentElement.appendChild(menuItem)
       }
