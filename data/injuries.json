@@ -31,38 +31,6 @@
     "coma": false
   },
   
-  "VC": {
-    "type": "Note interne",
-    "codePostal": "hospital_zip",
-    "dureeInvalidite": "",
-    "blessures": ["VC"],
-    "examens": {
-      "Constantes": [],
-      "Auscultation": [],
-      "Radio": [],
-      "Echo": [],
-      "IRM": [],
-      "Scanner": [],
-      "Ethylometre": [],
-      "Test salivaire": [],
-      "Autres": []
-    },
-    "traitements": {
-      "Chir AG" : [],
-      "Chir AL" : [],
-      "Manipulations" : [],
-      "Medicaments": [],
-      "Autres": []
-    },
-    "remarques": {
-      "Pret": [],
-      "Facturation": [],
-      "Autres": ["FDS"]
-    },
-    "incapacites": [],
-    "coma": false
-  },
-  
   "VM - Civil": {
     "type": "Note interne",
     "codePostal": "hospital_zip",
