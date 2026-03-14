@@ -1166,17 +1166,40 @@
 
 	// --- Loop ---
 
-	setInterval(() => {
-		injectIcon()
-		injectMenuItems()
-		loadVCExams()
-		injectSelect()
-		injectAlert()
-		injectDateCalculatorButton()
-		injectBloodTypeButton()
-		injectSimpleButton("modif-vm-btn", "⚕️ VM Maintenant", 'input[name="medicalVisitDate"]')
-		injectSimpleButton("modif-dds-btn", "🩸 DDS Maintenant", 'input[name="bloodDonationDate"]', true)
-		injectVCButton()
-		highlightErrorText()
-	}, 500)
+	function inject() {
+    if (window.location.href.includes("https://intra.21jumpclick.fr/medical/files")) {
+      loadVCExams()
+      injectSelect()
+      injectAlert()
+      injectDateCalculatorButton()
+      injectBloodTypeButton()
+      injectSimpleButton("modif-vm-btn", "⚕️ VM Maintenant", 'input[name="medicalVisitDate"]')
+      injectSimpleButton("modif-dds-btn", "🩸 DDS Maintenant", 'input[name="bloodDonationDate"]', true)
+      injectVCButton()
+      highlightErrorText()
+      console.log("Rapport Helper: Injections effectuées")
+    }
+    injectIcon()
+    injectMenuItems()
+	}
+
+	let loopId = null
+
+	function startLoop() {
+		if (loopId !== null) return
+		loopId = setInterval(() => {
+			const before = document.body.innerHTML.length
+			inject()
+			const after = document.body.innerHTML.length
+			if (before === after) {
+				clearInterval(loopId)
+				loopId = null
+			}
+		}, 300)
+	}
+
+	startLoop()
+	document.addEventListener("click", startLoop)
+	document.addEventListener("keydown", startLoop)
+
 })()
